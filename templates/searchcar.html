@@ -1,0 +1,93 @@
+{% include 'header.html' %}
+<body>
+  <style>
+    .search-results {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #f8f9fa; 
+      border-radius: 5px; 
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    }
+
+    .list-group-item {
+      margin-bottom: 15px;
+      padding: 15px;
+      border: 1px solid #dee2e6; 
+      border-radius: 5px; 
+      transition: background-color 0.3s; 
+    }
+
+    .list-group-item:hover {
+      background-color: #e2e6ea; 
+    }
+
+    .result-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      margin: 0 5px;
+      color: #007bff;
+    }
+
+    .result-detail {
+      font-weight: bold;
+      margin: 0 5px;
+      color: #333; 
+    }
+
+    .result-price {
+      font-weight: bold; 
+      margin: 0 5px;
+      color: #28a745;
+    }
+  </style>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ appType }} | Car Project</h1>
+        <h3>Demo:
+          <a href="{{ url_for('createcar') }}">Create</a> /
+          <a href="{{ url_for('readcar') }}">Read</a> /
+          <a href="{{ url_for('updatecar') }}">Update</a> /
+          <a href="{{ url_for('deletecar') }}">Delete</a> /
+          <a href="{{ url_for('searchcar') }}">Search</a>/
+          <a href="{{ url_for('uploadfile') }}">SVG/CSV/XLSX Upload</a>
+        </h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Search Car</h4>
+        <form role="form" action="{{ url_for('searchcar') }}" method="POST">
+          <div class="card mt-4">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="searchQuery">Enter Car Name</label>
+                <input type="text" class="form-control" id="searchQuery" name="searchQuery" placeholder="Enter Car Name" required />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Search</button>
+            </div>
+          </div>
+        </form>
+        {% if results %}
+        <div class="search-results">
+          <h4 class="mt-4">Search Results</h4>
+          <ul class="list-group">
+            {% for car in results %}
+            <li class="list-group-item">
+              <p class="result-title">Name: {{ car.carname }} </p> 
+              <p class="result-detail">Brand: {{ car.carbrand }}</p>
+              <p class="result-detail">Model: {{ car.carmodel }}</p>
+              <p class="result-price">Price: {{ car.carprice }} USD</p>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% else %}
+        <p>No results found.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</body>
+{% include 'footer.html' %}

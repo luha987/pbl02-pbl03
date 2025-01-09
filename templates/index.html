@@ -1,0 +1,25 @@
+{% include 'header.html' %}
+  <body>
+
+  <div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>{{appType}} | Car Project</h1>
+				<h3>Demo:
+						<a href="{{url_for('createcar')}}">Create</a>
+						/
+						<a href="{{url_for('readcar')}}">Read</a>
+						/
+						<a href="{{url_for('updatecar')}}">Update</a>
+						/
+						<a href="{{url_for('deletecar')}}">Delete</a>
+						/
+						<a href="{{url_for('searchcar')}}">Search</a>
+						/
+						<a href="{{url_for('help')}}">Help</a>
+						/
+                        <a href="{{ url_for('uploadfile') }}">SVG/CSV/XLSX Upload</a>
+				</h3>  
+			</div>
+	</div>
+{% include 'footer.html' %}

@@ -1,0 +1,52 @@
+{% include 'header.html' %}
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{appType}} | Car Project</h1>
+        <h3>Demo:
+            <a href="{{url_for('createcar')}}">Create</a>
+            /
+            <a href="{{url_for('readcar')}}">Read</a>
+            /
+            <a href="{{url_for('updatecar')}}">Update</a>
+            /
+            <a href="{{url_for('deletecar')}}">Delete</a>
+            /
+            <a href="{{url_for('searchcar')}}">Search</a>
+            /
+            <a href="{{ url_for('uploadfile') }}">SVG/CSV/XLSX Upload</a>
+        </h3> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Update Car Data</h4>
+        <form role="form" action="{{ url_for('updatecarsearch') }}" method="POST">
+          <div class="card mt-4">
+            <div class="card-body">
+              {% if error %}
+              <div class="alert alert-danger">{{ error }}</div>
+              {% endif %}
+              <div class="form-group">
+                <label for="carId">Masukkan Car ID</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carId"
+                  name="carId"
+                  placeholder="Enter Car ID"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Search
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{% include 'footer.html' %}

@@ -1,0 +1,97 @@
+{% include 'header.html' %}
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>{{ appType }} | Car Project</h1>
+        <h3>Demo:
+            <a href="{{ url_for('createcar') }}">Create</a>
+            /
+            <a href="{{ url_for('readcar') }}">Read</a>
+            /
+            <a href="{{ url_for('updatecar') }}">Update</a>
+            /
+            <a href="{{ url_for('deletecar') }}">Delete</a>
+            /
+            <a href="{{ url_for('searchcar') }}">Search</a>
+            /
+            <a href="{{ url_for('uploadfile') }}">SVG/CSV/XLSX Upload</a>
+        </h3> 
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Update Car Details</h4>
+        <form role="form" action="{{ url_for('updatecarsave') }}" method="POST">
+          <div class="card mt-4">
+            <div class="card-body">
+              {% if error %}
+              <div class="alert alert-danger">{{ error }}</div>
+              {% endif %}
+              
+              <!-- Hidden input for car ID -->
+              <input type="hidden" name="id" value="{{ car.id }}">
+
+              <div class="form-group">
+                <label for="carName">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carName"
+                  name="carName"
+                  placeholder="Enter Car Name"
+                  value="{{ car.carname }}"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="carBrand">Brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carBrand"
+                  name="carBrand"
+                  placeholder="Enter Car Brand"
+                  value="{{ car.carbrand }}"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="carModel">Model</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carModel"
+                  name="carModel"
+                  placeholder="Enter Car Model"
+                  value="{{ car.carmodel }}"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="carPrice">Price (USD)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="carPrice"
+                  name="carPrice"
+                  placeholder="Enter Car Price"
+                  value="{{ car.carprice }}"
+                  required
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                Update Car
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{% include 'footer.html' %}
